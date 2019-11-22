@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.ColorStateList;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -12,6 +14,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageSwitcher;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.ViewSwitcher;
 
@@ -77,6 +80,8 @@ public class CombatActivity extends Activity {
         binding.buttonPVJ1.setText("PV");
         binding.buttonPVJ2.setText("PV");
         binding.buttonFinRound.setText("Fin du round");
+        binding.determinatebarJ1.setProgressTintList(ColorStateList.valueOf(Color.GREEN));
+        binding.determinatebarJ2.setProgressTintList(ColorStateList.valueOf(Color.GREEN));
 
         binding.imageJoueur1.setFactory(new ViewSwitcher.ViewFactory() {
             @Override
@@ -118,6 +123,10 @@ public class CombatActivity extends Activity {
         animPersoRev(joueur2, binding.imageJoueur2);
         binding.textJoueur1CA.setText(joueur1.nomPerso);
         binding.textJoueur2CA.setText(joueur2.nomPerso);
+        binding.textVieJ1.setText("Vie :" + joueur1.vie);
+        binding.textVieJ2.setText("Vie :" + joueur2.vie);
+        binding.determinatebarJ1.setMax(joueur1.vie);
+        binding.determinatebarJ2.setMax(joueur2.vie);
         nomButton(binding.buttonAttBase, binding.buttonAttSpe, binding.buttonAttBaseJ2, binding.buttonAttSpeJ2, joueur1, joueur2);
         binding.textPres.setText("Nos 2 combattants sont : \n - " + joueur1.nomPerso + " un " + joueur1.name + " de niveau " + joueur1.niveau + "\n - " + joueur2.nomPerso + " un " + joueur2.name + " de niveau " + joueur2.niveau);
         tourAttaque(joueur1, joueur2);
@@ -135,14 +144,14 @@ public class CombatActivity extends Activity {
 
     public void tourAttaque(final Personnage persoJ1, final Personnage persoJ2) {
         binding.buttonFinRound.setEnabled(false);
-        buttonAtt(binding.buttonAttBase, binding.buttonAttSpe, binding.textInfoJ1, persoJ1, persoJ2, binding.imageJoueur1, binding.imageJoueur2, 1);
-        buttonAtt(binding.buttonAttBaseJ2, binding.buttonAttSpeJ2, binding.textInfoJ2, persoJ2, persoJ1, binding.imageJoueur2, binding.imageJoueur1, 2);
+        buttonAtt(binding.buttonAttBase, binding.buttonAttSpe, binding.textInfoJ1, binding.textVieJ1, binding.textVieJ2, persoJ1, persoJ2, binding.imageJoueur1, binding.imageJoueur2, binding.determinatebarJ1, binding.determinatebarJ2, 1);
+        buttonAtt(binding.buttonAttBaseJ2, binding.buttonAttSpeJ2, binding.textInfoJ2, binding.textVieJ2, binding.textVieJ1, persoJ2, persoJ1, binding.imageJoueur2, binding.imageJoueur1, binding.determinatebarJ2, binding.determinatebarJ1, 2);
 
         buttonPV(binding.buttonPVJ1, binding.textInfoJ1, persoJ1);
         buttonPV(binding.buttonPVJ2, binding.textInfoJ2, persoJ2);
 
-        buttonAttSpe(binding.buttonAttSpe, binding.textInfoJ1, persoJ1, persoJ2, binding.buttonAttBase, binding.imageJoueur1, binding.imageJoueur2, 1);
-        buttonAttSpe(binding.buttonAttSpeJ2, binding.textInfoJ2, persoJ2, persoJ1, binding.buttonAttBaseJ2, binding.imageJoueur2, binding.imageJoueur1, 2);
+        buttonAttSpe(binding.buttonAttSpe, binding.textInfoJ1, binding.textVieJ1, binding.textVieJ2, persoJ1, persoJ2, binding.buttonAttBase, binding.imageJoueur1, binding.imageJoueur2, binding.determinatebarJ1, binding.determinatebarJ2, 1);
+        buttonAttSpe(binding.buttonAttSpeJ2, binding.textInfoJ2, binding.textVieJ2, binding.textVieJ1, persoJ2, persoJ1, binding.buttonAttBaseJ2, binding.imageJoueur2, binding.imageJoueur1, binding.determinatebarJ2, binding.determinatebarJ1, 2);
 
         binding.buttonFinRound.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -211,7 +220,7 @@ public class CombatActivity extends Activity {
 
     // GESTION DES BUTTONS
 
-    public void buttonAtt(final Button buttonAttaque, final Button buttAttSpe, final TextView textInfo, final Personnage persoAtt, final Personnage persoDef, final ImageSwitcher imageSwitcherAtt, final ImageSwitcher imageSwitcherDef, final int i) {
+    public void buttonAtt(final Button buttonAttaque, final Button buttAttSpe, final TextView textInfo, final TextView textVieAtt, final TextView textVieDef, final Personnage persoAtt, final Personnage persoDef, final ImageSwitcher imageSwitcherAtt, final ImageSwitcher imageSwitcherDef, final ProgressBar pBarAtt, final ProgressBar pBarDef, final int i) {
         buttonAttaque.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -233,6 +242,20 @@ public class CombatActivity extends Activity {
                 if (countAtt == 2 && persoDef.vie > 0)
                     binding.buttonFinRound.setEnabled(true);
 
+                if(persoAtt.vie <= 0){
+                    textVieAtt.setText("Vie : 0");
+                }else {
+                    textVieAtt.setText("Vie : " + persoAtt.vie);
+                }
+
+                if(persoDef.vie <= 0){
+                    textVieDef.setText("Vie : 0");
+                }else {
+                    textVieDef.setText("Vie : " + persoDef.vie);
+                }
+
+                progressBarVie(persoAtt, persoDef, pBarAtt, pBarDef);
+
             }
         });
 
@@ -247,7 +270,7 @@ public class CombatActivity extends Activity {
         });
     }
 
-    public void buttonAttSpe(final Button buttonAttSpe, final TextView textInfo, final Personnage persoAttSpe, final Personnage persoDefSpe, final Button buttonAttBase, final ImageSwitcher imageSwitcherAtt, final ImageSwitcher imageSwitcherDef, final int i) {
+    public void buttonAttSpe(final Button buttonAttSpe, final TextView textInfo,  final TextView textVieAtt, final TextView textVieDef, final Personnage persoAttSpe, final Personnage persoDefSpe, final Button buttonAttBase, final ImageSwitcher imageSwitcherAtt, final ImageSwitcher imageSwitcherDef, final ProgressBar pBarAttSpe, final ProgressBar pBarDefSpe, final int i) {
         buttonAttSpe.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -267,8 +290,47 @@ public class CombatActivity extends Activity {
 
                 if (countAtt == 2 && persoDefSpe.vie > 0)
                     binding.buttonFinRound.setEnabled(true);
+
+                if(persoAttSpe.vie <= 0){
+                    textVieAtt.setText("Vie : 0");
+                }else {
+                    textVieAtt.setText("Vie : " + persoAttSpe.vie);
+                }
+
+                if(persoDefSpe.vie <= 0){
+                    textVieDef.setText("Vie : 0");
+                }else {
+                    textVieDef.setText("Vie : " + persoDefSpe.vie);
+                }
+
+                progressBarVie(persoAttSpe, persoDefSpe, pBarAttSpe, pBarDefSpe);
             }
         });
+    }
+
+    // PROGRESS BAR
+
+    public void progressBarVie(Personnage persoAtt, Personnage persoDef, ProgressBar pBarAtt, ProgressBar pBarDef){
+        int vieMaxAtt = 5 * persoAtt.niveau;
+        int vieMaxDef = 5 * persoDef.niveau;
+
+        pBarAtt.setProgress(persoAtt.vie);
+        pBarDef.setProgress(persoDef.vie);
+
+        if (persoAtt.vie <= vieMaxAtt / 2){
+            pBarAtt.setProgressTintList(ColorStateList.valueOf(Color.YELLOW));
+        }else if (persoAtt.vie <= vieMaxAtt / 4){
+            pBarAtt.setProgressTintList(ColorStateList.valueOf(Color.RED));
+        }
+
+        if (persoDef.vie <= vieMaxDef / 2){
+            pBarDef.setProgressTintList(ColorStateList.valueOf(Color.YELLOW));
+        }else if (persoDef.vie <= vieMaxDef / 4){
+            pBarDef.setProgressTintList(ColorStateList.valueOf(Color.RED));
+        }
+
+
+
     }
 
 
@@ -301,6 +363,8 @@ public class CombatActivity extends Activity {
         buttonJ2Base.setText(pJ2.nomAttBase);
         buttonJ2Spe.setText(pJ2.nomAttSpe);
     }
+
+
 
     public void setButton() {
         binding.buttonFinRound.setEnabled(false);

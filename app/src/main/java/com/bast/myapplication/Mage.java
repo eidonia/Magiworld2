@@ -22,7 +22,7 @@ public class Mage extends Personnage{
     @Override //Boule de feu
     public void attaqueDeBase(Personnage defenseur, TextView textView) {
         defenseur.vie -= degats;
-        textView.setText("Vous attaquez " + defenseur.nomPerso + " avec votre attaque " + nomAttBase + " " + degats);
+        textView.setText("Vous attaquez " + defenseur.nomPerso + " avec votre attaque " + nomAttBase);
     }
 
     @Override //Soin
