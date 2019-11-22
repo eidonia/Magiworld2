@@ -119,8 +119,8 @@ public class CombatActivity extends Activity {
 
         Personnage joueur1 = create(list, 0);
         Personnage joueur2 = create(list, 1);
-        animPerso(joueur1, binding.imageJoueur1);
-        animPersoRev(joueur2, binding.imageJoueur2);
+        joueur1.running(binding.imageJoueur1);
+        joueur2.runningReverse(binding.imageJoueur2);
         binding.textJoueur1CA.setText(joueur1.nomPerso);
         binding.textJoueur2CA.setText(joueur2.nomPerso);
         binding.textVieJ1.setText("Vie :" + joueur1.vie);
@@ -170,14 +170,6 @@ public class CombatActivity extends Activity {
 
 
     //ANIMATIONS
-
-    public void animPerso(final Personnage perso, final ImageSwitcher imageSwitcher) {
-        perso.running(imageSwitcher);
-    }
-
-    public void animPersoRev(Personnage perso, final ImageSwitcher imageSwitcher) {
-        perso.runningReverse(imageSwitcher);
-    }
 
     public void animFirework() {
         imgSwitchHandler = new Handler(Looper.getMainLooper());
