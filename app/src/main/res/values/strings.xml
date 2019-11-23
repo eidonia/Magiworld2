@@ -1,3 +1,44 @@
 <resources>
     <string name="app_name">Magiworld</string>
+
+    <string name="nameChar">Donne un nom à ton personnage</string>
+    <string name="levelChar">Entre son niveau</string>
+    <string name="strengthChar">Entre sa force</string>
+    <string name="agilityChar">Entre son agilité</string>
+    <string name="intelChar">Entre son intelligence</string>
+    <string name="creaChar">Création du personnage</string>
+    <string name="fight">Lancer le combat</string>
+    <string name="razGame">RAZ du jeu</string>
+    <string name="textcreaPersoMage">Je m\'appelle %1$s et je suis un  %2$s  niveau %3$d j\'ai %4$d pv et j\'ai %5$d en intelligence, %6$d en agilité et %7$d en force</string>
+    <string name="textcreaPersoWar">Je m\'appelle %1$s et je suis un  %2$s  niveau %3$d j\'ai %4$d pv et j\'ai %5$d en force, %6$d en agilité et %7$d en intelligence</string>
+    <string name="textcreaPersoRogue">Je m\'appelle %1$s et je suis un  %2$s  niveau %3$d j\'ai %4$d pv et j\'ai %5$d en agilité, %6$d en intelligence et %7$d en force</string>
+
+    <string name="toastStats">Vous ne pouvez pas avoir plus de caractéristiques que de niveau!</string>
+    <string name="toastCreate">Créez vos personnages !</string>
+    <string name="toastStatsFill">Remplis les cases</string>
+
+    <string name="attBaseMage">Boule de feu</string>
+    <string name="attSpeMage">Soin</string>
+    <string name="attBaseWar">Coup d\'épée</string>
+    <string name="attSpeWar">Coup de rage</string>
+    <string name="attBaseRogue">Coup de surin</string>
+    <string name="attSpeRogue">Concentration</string>
+    <string name="nameClassMage">Mage</string>
+    <string name="nameClassWar">Guerrier</string>
+    <string name="nameClassRogue">Rôdeur</string>
+
+
+    <string name="nowFight">A présent, passons au combat !</string>
+    <string name="restart">Recommencer</string>
+    <string name="restartIntent">Recommencer le jeu</string>
+    <string name="separateur"><br> ---------------</br></string>
+    <string name="healthPoint">PV</string>
+    <string name="endRound">Fin du Round</string>
+    <string name="round"><br/><br/><br/>Round %1$d</string>
+    <string name="describeFighters">Nos deux combattants sont : <br/>- %1$s un %2$s de niveau %3$d <br/>- %4$s un %5$s de niveau %6$d</string>
+    <string name="life">Vie : %1$d</string>
+    <string name="lifeText">Vous avez %1$d points de vie</string>
+    <string name="winText"><br/><br/>Félicitations ! %1$s a battu %2$s</string>
+    <string name="winBySuicideText"><br/><br/>Félicitations ! %1$s a gagné car %2$s s\'est tué avec son attaque</string>
+
 </resources>

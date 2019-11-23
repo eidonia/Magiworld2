@@ -1,7 +1,5 @@
 package com.bast.myapplication;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -53,16 +51,16 @@ public class CombatActivity extends Activity {
 
         ArrayList<Personnage> listPerso = (ArrayList) this.getIntent().getParcelableArrayListExtra("listPerso");
 
-        binding.textCombat.setText("A présent, passons au combat !");
+        binding.textCombat.setText(getResources().getString(R.string.nowFight));
         touJeu(listPerso);
 
 
-        binding.buttonReturn.setText("Recommencer");
+        binding.buttonReturn.setText(getResources().getString(R.string.restart));
         binding.buttonReturn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent();
-                intent.putExtra(MainActivity.VAL_RETOUR, "Recommence le jeu");
+                intent.putExtra(MainActivity.VAL_RETOUR, R.string.restartIntent);
                 CombatActivity.this.setResult(1, intent);
                 CombatActivity.this.finish();
             }
@@ -74,12 +72,12 @@ public class CombatActivity extends Activity {
     //CREATION DE LA VUE
 
     public void createView() {
-        binding.separateur.setText("\n --------------- \n");
-        binding.separateur.setText("\n --------------- \n");
-        binding.separateur3.setText("\n --------------- \n");
-        binding.buttonPVJ1.setText("PV");
-        binding.buttonPVJ2.setText("PV");
-        binding.buttonFinRound.setText("Fin du round");
+        binding.separateur.setText(getResources().getString(R.string.separateur));
+        binding.separateur.setText(getResources().getString(R.string.separateur));
+        binding.separateur3.setText(getResources().getString(R.string.separateur));
+        binding.buttonPVJ1.setText(getResources().getString(R.string.healthPoint));
+        binding.buttonPVJ2.setText(getResources().getString(R.string.healthPoint));
+        binding.buttonFinRound.setText(getResources().getString(R.string.endRound));
         binding.determinatebarJ1.setProgressTintList(ColorStateList.valueOf(Color.GREEN));
         binding.determinatebarJ2.setProgressTintList(ColorStateList.valueOf(Color.GREEN));
 
@@ -115,7 +113,7 @@ public class CombatActivity extends Activity {
     //CREATION  DU JEU
 
     public void touJeu(ArrayList<Personnage> list) {
-        binding.textRound.setText("\n\n\nRound 1");
+        binding.textRound.setText(getResources().getString(R.string.round, 1));
 
         Personnage joueur1 = create(list, 0);
         Personnage joueur2 = create(list, 1);
@@ -123,23 +121,23 @@ public class CombatActivity extends Activity {
         joueur2.runningReverse(binding.imageJoueur2);
         binding.textJoueur1CA.setText(joueur1.nomPerso);
         binding.textJoueur2CA.setText(joueur2.nomPerso);
-        binding.textVieJ1.setText("Vie :" + joueur1.vie);
-        binding.textVieJ2.setText("Vie :" + joueur2.vie);
+        binding.textVieJ1.setText(getResources().getString(R.string.life, joueur1.vie));
+        binding.textVieJ2.setText(getResources().getString(R.string.life, joueur2.vie));
         binding.determinatebarJ1.setMax(joueur1.vie);
         binding.determinatebarJ2.setMax(joueur2.vie);
         nomButton(binding.buttonAttBase, binding.buttonAttSpe, binding.buttonAttBaseJ2, binding.buttonAttSpeJ2, joueur1, joueur2);
-        binding.textPres.setText("Nos 2 combattants sont : \n - " + joueur1.nomPerso + " un " + joueur1.name + " de niveau " + joueur1.niveau + "\n - " + joueur2.nomPerso + " un " + joueur2.name + " de niveau " + joueur2.niveau);
+        binding.textPres.setText(getResources().getString(R.string.describeFighters, joueur1.nomPerso, joueur1.name, joueur1.niveau, joueur2.nomPerso, joueur2.name, joueur2.niveau));
         tourAttaque(joueur1, joueur2);
 
     }
 
     public Personnage create(ArrayList<Personnage> array, int i) {
-        if (array.get(i).name.equals("Mage")) {
-            return new Mage(array.get(i).name, array.get(i).nomPerso, array.get(i).niveau, array.get(i).vie, array.get(i).force, array.get(i).agilite, array.get(i).intelligence, "Boule de Feu", "Soin");
-        } else if (array.get(i).name.equals("Guerrier")) {
-            return new Guerrier(array.get(i).name, array.get(i).nomPerso, array.get(i).niveau, array.get(i).vie, array.get(i).force, array.get(i).agilite, array.get(i).intelligence, "Coup d'épée", "Coup de Rage");
+        if (array.get(i).name.equals(getResources().getString(R.string.nameClassMage))) {
+            return new Mage(array.get(i).name, array.get(i).nomPerso, array.get(i).niveau, array.get(i).vie, array.get(i).force, array.get(i).agilite, array.get(i).intelligence, getResources().getString(R.string.attBaseMage), getResources().getString(R.string.attSpeMage));
+        } else if (array.get(i).name.equals(getResources().getString(R.string.nameClassWar))) {
+            return new Guerrier(array.get(i).name, array.get(i).nomPerso, array.get(i).niveau, array.get(i).vie, array.get(i).force, array.get(i).agilite, array.get(i).intelligence, getResources().getString(R.string.attBaseWar), getResources().getString(R.string.attSpeWar));
         }
-        return new Rodeur(array.get(i).name, array.get(i).nomPerso, array.get(i).niveau, array.get(i).vie, array.get(i).force, array.get(i).agilite, array.get(i).intelligence, "Coup de Surin", "Concentration");
+        return new Rodeur(array.get(i).name, array.get(i).nomPerso, array.get(i).niveau, array.get(i).vie, array.get(i).force, array.get(i).agilite, array.get(i).intelligence, getResources().getString(R.string.attBaseRogue), getResources().getString(R.string.attSpeRogue));
     }
 
     public void tourAttaque(final Personnage persoJ1, final Personnage persoJ2) {
@@ -162,7 +160,7 @@ public class CombatActivity extends Activity {
                 binding.buttonAttSpeJ2.setEnabled(true);
                 binding.buttonFinRound.setEnabled(false);
                 i++;
-                binding.textRound.setText("\n\nRound " + i);
+                binding.textRound.setText(getResources().getString(R.string.round, i));
                 countAtt = 0;
             }
         });
@@ -235,15 +233,15 @@ public class CombatActivity extends Activity {
                     binding.buttonFinRound.setEnabled(true);
 
                 if(persoAtt.vie <= 0){
-                    textVieAtt.setText("Vie : 0");
+                    textVieAtt.setText(getResources().getString(R.string.life, 0));
                 }else {
-                    textVieAtt.setText("Vie : " + persoAtt.vie);
+                    textVieAtt.setText(getResources().getString(R.string.life, persoAtt.vie));
                 }
 
                 if(persoDef.vie <= 0){
-                    textVieDef.setText("Vie : 0");
+                    textVieDef.setText(getResources().getString(R.string.life, 0));
                 }else {
-                    textVieDef.setText("Vie : " + persoDef.vie);
+                    textVieDef.setText(getResources().getString(R.string.life, persoDef.vie));
                 }
 
                 progressBarVie(persoAtt, persoDef, pBarAtt, pBarDef);
@@ -257,7 +255,7 @@ public class CombatActivity extends Activity {
         buttonPV.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                textInfoSoin.setText("Vous avez " + persoPV.vie + " points de vie");
+                textInfoSoin.setText(getResources().getString(R.string.lifeText, persoPV.vie));
             }
         });
     }
@@ -284,15 +282,15 @@ public class CombatActivity extends Activity {
                     binding.buttonFinRound.setEnabled(true);
 
                 if(persoAttSpe.vie <= 0){
-                    textVieAtt.setText("Vie : 0");
+                    textVieAtt.setText(getResources().getString(R.string.life, 0));
                 }else {
-                    textVieAtt.setText("Vie : " + persoAttSpe.vie);
+                    textVieAtt.setText(getResources().getString(R.string.life, persoAttSpe.vie));
                 }
 
                 if(persoDefSpe.vie <= 0){
-                    textVieDef.setText("Vie : 0");
+                    textVieDef.setText(getResources().getString(R.string.life, 0));
                 }else {
-                    textVieDef.setText("Vie : " + persoDefSpe.vie);
+                    textVieDef.setText(getResources().getString(R.string.life, persoDefSpe.vie));
                 }
 
                 progressBarVie(persoAttSpe, persoDefSpe, pBarAttSpe, pBarDefSpe);
@@ -330,14 +328,14 @@ public class CombatActivity extends Activity {
 
     public void testPointDeVie(Personnage persoAtt, Personnage persoVie, TextView text, ImageSwitcher imageSwitcherAtt, ImageSwitcher imageSwitcherDef) {
         if (persoVie.vie <= 0) {
-            text.setText("\n\nFélicitation !! " + persoAtt.nomPerso + " a gagné le combat !!");
+            text.setText(getResources().getString(R.string.winText, persoAtt.nomPerso, persoVie.nomPerso));
             setButton();
             persoAtt.isFighting = false;
             persoVie.isFighting = false;
             persoVie.death(imageSwitcherDef);
             persoAtt.win(imageSwitcherAtt);
         } else if (persoAtt.vie <= 0) {
-            text.setText("\n\nFélicitation !! " + persoAtt.nomPerso + " s'est tué avec son attaque ! " + persoVie.nomPerso + " gagne le combat !!");
+            text.setText(getResources().getString(R.string.winBySuicideText, persoVie.nomPerso, persoAtt.nomPerso));
             setButton();
             persoAtt.isFighting = false;
             persoVie.isFighting = false;

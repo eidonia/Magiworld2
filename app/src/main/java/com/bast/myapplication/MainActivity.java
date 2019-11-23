@@ -1,7 +1,5 @@
 package com.bast.myapplication;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -10,6 +8,7 @@ import android.text.InputType;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -46,7 +45,7 @@ public class MainActivity extends Activity {
             public void onClick(View v) {
 
                 if(arrayPerso.isEmpty()){
-                    Toast.makeText(MainActivity.this, "Créez vos personnages !", Toast.LENGTH_LONG).show();
+                    Toast.makeText(MainActivity.this, R.string.toastCreate, Toast.LENGTH_LONG).show();
                 }else{
                     Intent intent = new Intent(MainActivity.this, CombatActivity.class);
                     intent.putParcelableArrayListExtra("listPerso", (ArrayList)arrayPerso);
@@ -67,64 +66,64 @@ public class MainActivity extends Activity {
     //CREATION DE LA VUE
 
     public void createView(){
-        binding.textBienvenue.setText("Magiworld");
+        binding.textBienvenue.setText(R.string.app_name);
 
-        binding.textNomPerso.setText("Donne un nom à ton personnage");
+        binding.textNomPerso.setText(R.string.nameChar);
         binding.editNomPerso.getHint();
         binding.editNomPerso.setInputType(InputType.TYPE_TEXT_VARIATION_SHORT_MESSAGE);
         binding.editNomPerso.setMaxLines(1);
 
-        binding.textNivJ1.setText("Entre le niveau de ton personnage");
+        binding.textNivJ1.setText(R.string.levelChar);
         binding.editNivJ1.getHint();
         binding.editNivJ1.setInputType(InputType.TYPE_CLASS_NUMBER);
         binding.editNivJ1.setMaxLines(1);
 
-        binding.textForceJ1.setText("Entre sa force");
+        binding.textForceJ1.setText(R.string.strengthChar);
         binding.editForceJ1.getHint();
         binding.editForceJ1.setInputType(InputType.TYPE_CLASS_NUMBER);
         binding.editForceJ1.setMaxLines(1);
 
-        binding.textAgiJ1.setText("Entre son agilité");
+        binding.textAgiJ1.setText(R.string.agilityChar);
         binding.editAgiJ1.getHint();
         binding.editAgiJ1.setInputType(InputType.TYPE_CLASS_NUMBER);
         binding.editAgiJ1.setMaxLines(1);
 
-        binding.textIntJ1.setText("Entre son intelligence");
+        binding.textIntJ1.setText(R.string.intelChar);
         binding.editIntJ1.getHint();
         binding.editIntJ1.setInputType(InputType.TYPE_CLASS_NUMBER);
         binding.editIntJ1.setMaxLines(1);
 
-        binding.buttonCreateJ1.setText("Création du personnage");
+        binding.buttonCreateJ1.setText(R.string.creaChar);
 
-        binding.textNomPerso2.setText("Donne un nom à ton personnage");
+        binding.textNomPerso2.setText(R.string.nameChar);
         binding.editNomPerso2.getHint();
         binding.editNomPerso2.setInputType(InputType.TYPE_TEXT_VARIATION_SHORT_MESSAGE);
         binding.editNomPerso2.setMaxLines(1);
 
-        binding.textNivJ2.setText("Entre le niveau de ton personnage");
+        binding.textNivJ2.setText(R.string.levelChar);
         binding.editNivJ2.getHint();
         binding.editNivJ2.setInputType(InputType.TYPE_CLASS_NUMBER);
         binding.editNivJ2.setMaxLines(1);
 
-        binding.textForceJ2.setText("Entre sa force");
+        binding.textForceJ2.setText(R.string.strengthChar);
         binding.editForceJ2.getHint();
         binding.editForceJ2.setInputType(InputType.TYPE_CLASS_NUMBER);
         binding.editForceJ2.setMaxLines(1);
 
-        binding.textAgiJ2.setText("Entre son agilité");
+        binding.textAgiJ2.setText(R.string.agilityChar);
         binding.editAgiJ2.getHint();
         binding.editAgiJ2.setInputType(InputType.TYPE_CLASS_NUMBER);
         binding.editAgiJ2.setMaxLines(1);
 
-        binding.textIntJ2.setText("Entre son intelligence");
+        binding.textIntJ2.setText(R.string.intelChar);
         binding.editIntJ2.getHint();
         binding.editIntJ2.setInputType(InputType.TYPE_CLASS_NUMBER);
         binding.editIntJ2.setMaxLines(1);
 
-        binding.buttonCreateJ2.setText("Création du personnage");
+        binding.buttonCreateJ2.setText(R.string.creaChar);
 
-        binding.buttonCombat.setText("Let's Fight !");
-        binding.buttonRAZ.setText("RAZ du jeu");
+        binding.buttonCombat.setText(R.string.fight);
+        binding.buttonRAZ.setText(R.string.razGame);
 
         binding.buttonCreateJ1.setOnClickListener(createListener);
         binding.buttonCreateJ2.setOnClickListener(createListener);
@@ -147,11 +146,11 @@ public class MainActivity extends Activity {
                 case R.id.buttonCreateJ1 :
                     String nomJ1 = "";
                     if (binding.rGroupJ1.getCheckedRadioButtonId() == R.id.rButtonWarJ1){
-                        nomJ1 = "Guerrier";
+                        nomJ1 = getResources().getString(R.string.nameClassWar);
                     }else if (binding.rGroupJ1.getCheckedRadioButtonId() == R.id.rButtonRogueJ1){
-                        nomJ1 = "Rôdeur";
+                        nomJ1 = getResources().getString(R.string.nameClassRogue);
                     }else if (binding.rGroupJ1.getCheckedRadioButtonId() == R.id.rButtonMageJ1){
-                        nomJ1 = "Mage";
+                        nomJ1 = getResources().getString(R.string.nameClassMage);
                     }
 
                     createCharac(binding.editNomPerso, binding.editNivJ1, binding.editForceJ1, binding.editIntJ1, binding.editAgiJ1, binding.textResCreaJ1, nomJ1);
@@ -160,11 +159,11 @@ public class MainActivity extends Activity {
                 case R.id.buttonCreateJ2 :
                     String nomJ2 = "";
                     if (binding.rGroupJ2.getCheckedRadioButtonId() == R.id.rButtonWarJ2){
-                        nomJ2 = "Guerrier";
+                        nomJ2 = getResources().getString(R.string.nameClassWar);
                     }else if (binding.rGroupJ2.getCheckedRadioButtonId() == R.id.rButtonRogueJ2){
-                        nomJ2 = "Rôdeur";
+                        nomJ2 = getResources().getString(R.string.nameClassRogue);
                     }else if (binding.rGroupJ2.getCheckedRadioButtonId() == R.id.rButtonMageJ2){
-                        nomJ2 = "Mage";
+                        nomJ2 = getResources().getString(R.string.nameClassMage);
                     }
                     createCharac(binding.editNomPerso2, binding.editNivJ2, binding.editForceJ2, binding.editIntJ2, binding.editAgiJ2, binding.textResCreaJ2, nomJ2);
                     break;
@@ -174,7 +173,7 @@ public class MainActivity extends Activity {
 
     public void createCharac(EditText editNom, EditText editNiv, EditText editForce, EditText editInt, EditText editAgi, TextView textView, String nomClasse){
         if(editNom.getText().toString().equals("") || editNiv.getText().toString().equals("") || editForce.getText().toString().equals("") || editInt.getText().toString().equals("") || editAgi.getText().toString().equals("")){
-            Toast.makeText(MainActivity.this, "Remplis les cases", Toast.LENGTH_LONG).show();
+            Toast.makeText(MainActivity.this, R.string.toastStatsFill, Toast.LENGTH_LONG).show();
         }else{
 
             createStats(editNom, editNiv, editForce, editAgi, editInt, textView, nomClasse);
@@ -206,7 +205,7 @@ public class MainActivity extends Activity {
 
     public void testCarac(String nomPerso, int niv, int vie, int force, int agi, int intel, TextView textview, String nomClasse){
         if ((force+agi+intel) > niv){
-            Toast.makeText(this, "Vous ne pouvez pas avoir plus de caractéristiques que de niveau!", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, R.string.toastStats, Toast.LENGTH_LONG).show();
         }else{
             chooseClass(nomClasse, nomPerso, niv, vie, force, agi, intel, textview);
 
@@ -216,19 +215,19 @@ public class MainActivity extends Activity {
     }
 
     public void chooseClass(String nameClass, String nomPerso, int niv, int vie, int force, int agi, int intel, TextView textview){
-        if(nameClass.equals("Mage")){
-            Mage mage = new Mage("Mage", nomPerso, niv, vie, force, agi, intel, "Boule de Feu", "Soin");
-            textview.setText("Je m'appelle " + mage.nomPerso +" et je suis un " + mage.name + " niveau " + mage.niveau + " j'ai "  + mage.vie + " pv et j'ai "+ mage.intelligence + " en intelligence, " + mage.agilite + " en agilité et " + mage.force + " en force");
+        if(nameClass.equals(getResources().getString(R.string.nameClassMage))){
+            Mage mage = new Mage(getResources().getString(R.string.nameClassMage), nomPerso, niv, vie, force, agi, intel, getResources().getString(R.string.attBaseMage), getResources().getString(R.string.attSpeMage));
+            textview.setText(getResources().getString(R.string.textcreaPersoMage, mage.nomPerso, mage.name, mage.niveau, mage.vie, mage.intelligence, mage.agilite, mage.force));
             arrayPerso.add(mage);
 
-        }else if(nameClass.equals("Guerrier")){
-            Guerrier guerrier = new Guerrier("Guerrier", nomPerso, niv, vie, force, agi, intel, "Coup d'épée", "Coup de Rage");
-            textview.setText("Je m'appelle " + guerrier.nomPerso + " et je suis un " + guerrier.name + " niveau " + guerrier.niveau + " j'ai "  + guerrier.vie + " pv et j'ai "+ guerrier.force + " en force, " + guerrier.agilite + " en agilité et " + guerrier.intelligence + " en intelligence");
+        }else if(nameClass.equals(getResources().getString(R.string.nameClassWar))){
+            Guerrier guerrier = new Guerrier(getResources().getString(R.string.nameClassWar), nomPerso, niv, vie, force, agi, intel, getResources().getString(R.string.attBaseWar), getResources().getString(R.string.attSpeWar));
+            textview.setText(getResources().getString(R.string.textcreaPersoWar, guerrier.nomPerso, guerrier.name, guerrier.niveau, guerrier.vie, guerrier.force, guerrier.agilite, guerrier.intelligence));
             arrayPerso.add(guerrier);
 
         }else{
-            Rodeur rodeur = new Rodeur("Rôdeur", nomPerso, niv, vie, force, agi, intel, "Coup de Surin", "Concentration");
-            textview.setText("Je m'appelle " + rodeur.nomPerso + " et je suis un " + rodeur.name + " niveau " + rodeur.niveau + " j'ai "  + rodeur.vie + " pv et j'ai "+ rodeur.agilite + " en agilité, " + rodeur.force + " en force et " + rodeur.intelligence + " en intelligence");
+            Rodeur rodeur = new Rodeur(getResources().getString(R.string.nameClassRogue), nomPerso, niv, vie, force, agi, intel, getResources().getString(R.string.attBaseWar), getResources().getString(R.string.attSpeRogue));
+            textview.setText(getResources().getString(R.string.textcreaPersoRogue, rodeur.nomPerso, rodeur.name, rodeur.niveau, rodeur.vie, rodeur.agilite, rodeur.intelligence, rodeur.force));
             arrayPerso.add(rodeur);
 
         }
@@ -307,6 +306,7 @@ public class MainActivity extends Activity {
         }
 
     }
+
 
 
 
