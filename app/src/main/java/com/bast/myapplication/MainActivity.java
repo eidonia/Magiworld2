@@ -25,6 +25,8 @@ public class MainActivity extends Activity {
     public final static String VAL_RETOUR = "com.bast.magiworld.VALRETOUR";
     ArrayList<Personnage> arrayPerso = new ArrayList<>();
     private ActivityMainBinding binding;
+    String nomImgSwitch = "";
+    int valImgSwitcher;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -144,28 +146,16 @@ public class MainActivity extends Activity {
         public void onClick(View v) {
             switch(v.getId()){
                 case R.id.buttonCreateJ1 :
-                    String nomJ1 = "";
-                    if (binding.rGroupJ1.getCheckedRadioButtonId() == R.id.rButtonWarJ1){
-                        nomJ1 = getResources().getString(R.string.nameClassWar);
-                    }else if (binding.rGroupJ1.getCheckedRadioButtonId() == R.id.rButtonRogueJ1){
-                        nomJ1 = getResources().getString(R.string.nameClassRogue);
-                    }else if (binding.rGroupJ1.getCheckedRadioButtonId() == R.id.rButtonMageJ1){
-                        nomJ1 = getResources().getString(R.string.nameClassMage);
-                    }
+                    valImgSwitcher = 0;
+                    nomImgSwitch = choixRadioButton(binding.rGroupJ1, valImgSwitcher);
 
-                    createCharac(binding.editNomPerso, binding.editNivJ1, binding.editForceJ1, binding.editIntJ1, binding.editAgiJ1, binding.textResCreaJ1, nomJ1);
+                    createCharac(binding.editNomPerso, binding.editNivJ1, binding.editForceJ1, binding.editIntJ1, binding.editAgiJ1, binding.textResCreaJ1, nomImgSwitch);
                     break;
 
                 case R.id.buttonCreateJ2 :
-                    String nomJ2 = "";
-                    if (binding.rGroupJ2.getCheckedRadioButtonId() == R.id.rButtonWarJ2){
-                        nomJ2 = getResources().getString(R.string.nameClassWar);
-                    }else if (binding.rGroupJ2.getCheckedRadioButtonId() == R.id.rButtonRogueJ2){
-                        nomJ2 = getResources().getString(R.string.nameClassRogue);
-                    }else if (binding.rGroupJ2.getCheckedRadioButtonId() == R.id.rButtonMageJ2){
-                        nomJ2 = getResources().getString(R.string.nameClassMage);
-                    }
-                    createCharac(binding.editNomPerso2, binding.editNivJ2, binding.editForceJ2, binding.editIntJ2, binding.editAgiJ2, binding.textResCreaJ2, nomJ2);
+                    valImgSwitcher = 1;
+                    nomImgSwitch = choixRadioButton(binding.rGroupJ2, valImgSwitcher);
+                    createCharac(binding.editNomPerso2, binding.editNivJ2, binding.editForceJ2, binding.editIntJ2, binding.editAgiJ2, binding.textResCreaJ2, nomImgSwitch);
                     break;
             }
         }
@@ -305,6 +295,29 @@ public class MainActivity extends Activity {
             rButtonMage.setBackground(getDrawable(R.mipmap.magechoose));
         }
 
+    }
+
+    public String choixRadioButton(RadioGroup radioGroup, int valImgSwitcher){
+        String nom = "";
+        if (valImgSwitcher == 0 ){
+            if (binding.rGroupJ1.getCheckedRadioButtonId() == R.id.rButtonWarJ1){
+                nom = getResources().getString(R.string.nameClassWar);
+            }else if (binding.rGroupJ1.getCheckedRadioButtonId() == R.id.rButtonRogueJ1){
+                nom = getResources().getString(R.string.nameClassRogue);
+            }else if (binding.rGroupJ1.getCheckedRadioButtonId() == R.id.rButtonMageJ1){
+                nom = getResources().getString(R.string.nameClassMage);
+
+            }
+        }else{
+            if (binding.rGroupJ2.getCheckedRadioButtonId() == R.id.rButtonWarJ2){
+                nom = getResources().getString(R.string.nameClassWar);
+            }else if (binding.rGroupJ2.getCheckedRadioButtonId() == R.id.rButtonRogueJ2){
+                nom = getResources().getString(R.string.nameClassRogue);
+            }else if (binding.rGroupJ2.getCheckedRadioButtonId() == R.id.rButtonMageJ2){
+                nom = getResources().getString(R.string.nameClassMage);
+            }
+        }
+        return nom;
     }
 
 
