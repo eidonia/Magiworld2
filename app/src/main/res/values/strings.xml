@@ -31,14 +31,14 @@
     <string name="nowFight">A présent, passons au combat !</string>
     <string name="restart">Recommencer</string>
     <string name="restartIntent">Recommencer le jeu</string>
-    <string name="separateur"><br> ---------------</br></string>
+    <string name="separateur">\n ---------------\n</string>
     <string name="healthPoint">PV</string>
     <string name="endRound">Fin du Round</string>
-    <string name="round"><br/><br/><br/>Round %1$d</string>
-    <string name="describeFighters">Nos deux combattants sont : <br/>- %1$s un %2$s de niveau %3$d <br/>- %4$s un %5$s de niveau %6$d</string>
+    <string name="round">Round %1$d</string>
+    <string name="describeFighters">Nos deux combattants sont : \n- %1$s un %2$s de niveau %3$d \n- %4$s un %5$s de niveau %6$d\n\n</string>
     <string name="life">Vie : %1$d</string>
     <string name="lifeText">Vous avez %1$d points de vie</string>
-    <string name="winText"><br/><br/>Félicitations ! %1$s a battu %2$s</string>
-    <string name="winBySuicideText"><br/><br/>Félicitations ! %1$s a gagné car %2$s s\'est tué avec son attaque</string>
+    <string name="winText">\n\nFélicitations ! %1$s a battu %2$s</string>
+    <string name="winBySuicideText">\n\nFélicitations ! %1$s a gagné car %2$s s\'est tué avec son attaque</string>
 
 </resources>

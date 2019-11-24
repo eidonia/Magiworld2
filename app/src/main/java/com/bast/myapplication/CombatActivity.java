@@ -119,8 +119,8 @@ public class CombatActivity extends Activity {
         Personnage joueur2 = create(list, 1);
         joueur1.running(binding.imageJoueur1);
         joueur2.runningReverse(binding.imageJoueur2);
-        binding.textJoueur1CA.setText(joueur1.nomPerso);
-        binding.textJoueur2CA.setText(joueur2.nomPerso);
+        binding.textJoueur1CA.setText(joueur1.nomPerso + "\n");
+        binding.textJoueur2CA.setText(joueur2.nomPerso + "\n");
         binding.textVieJ1.setText(getResources().getString(R.string.life, joueur1.vie));
         binding.textVieJ2.setText(getResources().getString(R.string.life, joueur2.vie));
         binding.determinatebarJ1.setMax(joueur1.vie);

@@ -22,7 +22,7 @@
                 android:layout_height="match_parent"
                 android:background="@color/whiteOpacity"
                 android:orientation="vertical"
-                android:paddingLeft="15dp"
+                android:paddingStart="15dp"
                 android:paddingTop="15dp"
                 android:paddingRight="15dp"
                 android:paddingBottom="15dp">
@@ -34,7 +34,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
                     android:textColor="#000000"
-                    android:textSize="45dp"
+                    android:textSize="45sp"
                     android:textStyle="bold" />
 
                 <RadioGroup
@@ -80,7 +80,8 @@
                         android:layout_column="0"
                         android:layout_weight="1"
                         android:textColor="#000000"
-                        android:textSize="13dp" />
+                        android:textSize="13sp"
+                        android:paddingStart="40dp"/>
 
                     <EditText
                         android:id="@+id/editNomPerso"
@@ -103,9 +104,9 @@
                         android:layout_height="wrap_content"
                         android:layout_column="0"
                         android:layout_weight="1"
-                        android:paddingLeft="45dp"
+                        android:paddingStart="45dp"
                         android:textColor="#000000"
-                        android:textSize="12dp" />
+                        android:textSize="12sp" />
 
                     <EditText
                         android:id="@+id/editNivJ1"
@@ -128,7 +129,7 @@
                         android:layout_height="wrap_content"
                         android:layout_column="0"
                         android:layout_weight="1"
-                        android:paddingLeft="45dp"
+                        android:paddingStart="45dp"
                         android:textColor="#000000" />
 
                     <EditText
@@ -152,7 +153,7 @@
                         android:layout_height="wrap_content"
                         android:layout_column="0"
                         android:layout_weight="1"
-                        android:paddingLeft="40dp"
+                        android:paddingStart="40dp"
                         android:textColor="#000000" />
 
                     <EditText
@@ -176,7 +177,7 @@
                         android:layout_height="wrap_content"
                         android:layout_column="0"
                         android:layout_weight="1"
-                        android:paddingLeft="30dp"
+                        android:paddingStart="30dp"
                         android:textColor="#000000" />
 
                     <EditText
@@ -201,7 +202,7 @@
                     android:layout_height="wrap_content"
                     android:paddingTop="15dp"
                     android:textColor="#000000"
-                    android:textSize="15dp"
+                    android:textSize="15sp"
                     android:textStyle="bold" />
 
                 <RadioGroup
@@ -247,7 +248,8 @@
                         android:layout_column="0"
                         android:layout_weight="1"
                         android:textColor="#000000"
-                        android:textSize="13dp" />
+                        android:textSize="13sp"
+                        android:paddingStart="40dp"/>
 
                     <EditText
                         android:id="@+id/editNomPerso2"
@@ -272,9 +274,9 @@
                         android:layout_height="wrap_content"
                         android:layout_column="0"
                         android:layout_weight="1"
-                        android:paddingLeft="45dp"
+                        android:paddingStart="45dp"
                         android:textColor="#000000"
-                        android:textSize="12dp" />
+                        android:textSize="12sp" />
 
                     <EditText
                         android:id="@+id/editNivJ2"
@@ -297,7 +299,7 @@
                         android:layout_height="wrap_content"
                         android:layout_column="0"
                         android:layout_weight="1"
-                        android:paddingLeft="45dp"
+                        android:paddingStart="45dp"
                         android:textColor="#000000" />
 
                     <EditText
@@ -321,7 +323,7 @@
                         android:layout_height="wrap_content"
                         android:layout_column="0"
                         android:layout_weight="1"
-                        android:paddingLeft="40dp"
+                        android:paddingStart="40dp"
                         android:textColor="#000000" />
 
                     <EditText
@@ -345,7 +347,7 @@
                         android:layout_height="wrap_content"
                         android:layout_column="0"
                         android:layout_weight="1"
-                        android:paddingLeft="30dp"
+                        android:paddingStart="30dp"
                         android:textColor="#000000" />
 
                     <EditText
@@ -370,7 +372,7 @@
                     android:layout_height="wrap_content"
                     android:paddingTop="15dp"
                     android:textColor="#000000"
-                    android:textSize="15dp"
+                    android:textSize="15sp"
                     android:textStyle="bold" />
 
                 <TableRow

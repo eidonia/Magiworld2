@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Magiworld</string>
+
+    <string name="nameChar">Character\'s name</string>
+    <string name="levelChar">Enter your level</string>
+    <string name="strengthChar">Enter your strength</string>
+    <string name="agilityChar">Enter your agility</string>
+    <string name="intelChar">Enter your intelligence</string>
+    <string name="creaChar">Create Character</string>
+    <string name="fight">Let\'s Fight</string>
+    <string name="razGame">Reset</string>
+    <string name="textcreaPersoMage">My name is %1$s and I am a  %2$s  level %3$d I have %4$d hp and I have %5$d intelligence, %6$d agility and %7$d strength</string>
+    <string name="textcreaPersoWar">My name is %1$s and I am a  %2$s  level %3$d I have %4$d hp and I have %5$d strength, %6$d agility and %7$d intelligence</string>
+    <string name="textcreaPersoRogue">My bame is %1$s and I am a  %2$s level %3$d I have %4$d hp and I have %5$d agility, %6$d intelligence and %7$d strength</string>
+
+    <string name="toastStats">You cannot have more statistics than level !</string>
+    <string name="toastCreate">Create your characters !</string>
+    <string name="toastStatsFill">Fulfill your statistics</string>
+
+    <string name="attBaseMage">Fireball</string>
+    <string name="attSpeMage">Heal</string>
+    <string name="attBaseWar">Sword attack</string>
+    <string name="attSpeWar">Rage attack</string>
+    <string name="attBaseRogue">Backstab</string>
+    <string name="attSpeRogue">Concentrate</string>
+    <string name="nameClassMage">Mage</string>
+    <string name="nameClassWar">Warrior</string>
+    <string name="nameClassRogue">Rogue</string>
+
+
+    <string name="nowFight">Now, let\'s fight !</string>
+    <string name="restart">Restart</string>
+    <string name="restartIntent">Play again</string>
+    <string name="separateur">\n---------------\n</string>
+    <string name="healthPoint">HP</string>
+    <string name="endRound">End of the round</string>
+    <string name="round">Round %1$d</string>
+    <string name="describeFighters">Our two fighters are : \n- %1$s a %2$s level %3$d \n- %4$s a %5$s level %6$d\n\n</string>
+    <string name="life">HP : %1$d</string>
+    <string name="lifeText">You have %1$d health points</string>
+    <string name="winText">\n\nCongratulations ! %1$s won against %2$s</string>
+    <string name="winBySuicideText">\n\nCongratulations ! %1$s won because %2$s killed himself</string>
+
+</resources>
