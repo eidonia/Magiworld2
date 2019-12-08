@@ -5,6 +5,7 @@ import android.os.Looper;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.widget.ImageSwitcher;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 public class Rodeur extends Personnage{
@@ -15,13 +16,19 @@ public class Rodeur extends Personnage{
     }
 
     @Override //Tir à l'Arc
-    public void attaqueDeBase(Personnage defenseur, TextView textView) {
+    public void attaqueDeBase(Personnage defenseur, TextView textView, ProgressBar progressBarAtt, ProgressBar progressBarDef) {
+        int vieBase = defenseur.vie;
         defenseur.vie -= degats;
+
+        ProgressBarAnim progressBarAnim = new ProgressBarAnim(progressBarDef, vieBase, defenseur.vie);
+        progressBarAnim.setDuration(1000);
+        progressBarDef.startAnimation(progressBarAnim);
+
         textView.setText("Vous attaquez " + defenseur.nomPerso + " avec votre attaque " + nomAttBase);
     }
 
     @Override //Concentration
-    public void attaqueSpeciale(Personnage defenseur, TextView textView) {
+    public void attaqueSpeciale(Personnage defenseur, TextView textView, ProgressBar progressBarAtt, ProgressBar progressBarDef) {
         degats = agilite + (niveau/2);
         textView.setText("Vous augmentez votre concentration");
 

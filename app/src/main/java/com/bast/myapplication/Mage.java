@@ -5,6 +5,7 @@ import android.os.Looper;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.widget.ImageSwitcher;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.os.Handler;
 
@@ -20,16 +21,28 @@ public class Mage extends Personnage{
     }
 
     @Override //Boule de feu
-    public void attaqueDeBase(Personnage defenseur, TextView textView) {
+    public void attaqueDeBase(Personnage defenseur, TextView textView, ProgressBar progressBarAtt, ProgressBar progressBarDef) {
+        int vieBase = defenseur.vie;
         defenseur.vie -= degats;
+
+        ProgressBarAnim progressBarAnim = new ProgressBarAnim(progressBarDef, vieBase, defenseur.vie);
+        progressBarAnim.setDuration(1000);
+        progressBarDef.startAnimation(progressBarAnim);
+
         textView.setText("Vous attaquez " + defenseur.nomPerso + " avec votre attaque " + nomAttBase);
     }
 
     @Override //Soin
-    public void attaqueSpeciale(Personnage defenseur, TextView textView) {
+    public void attaqueSpeciale(Personnage defenseur, TextView textView, ProgressBar progressBarAtt, ProgressBar progressBarDef) {
+        int vieBase = this.vie;
         this.vie = vie + (2*intelligence);
 
         if(vie > (5*niveau)) vie = 5 * niveau;
+
+        ProgressBarAnim progressBarAnim = new ProgressBarAnim(progressBarAtt, vieBase, vie);
+        progressBarAnim.setDuration(1000);
+        progressBarDef.startAnimation(progressBarAnim);
+
         textView.setText("Vous vous soignez, votre vie est maintenant de " + vie);
     }
 

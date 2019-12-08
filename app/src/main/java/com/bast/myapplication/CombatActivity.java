@@ -214,7 +214,7 @@ public class CombatActivity extends Activity {
         buttonAttaque.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                persoAtt.attaqueDeBase(persoDef, textInfo);
+                persoAtt.attaqueDeBase(persoDef, textInfo, pBarAtt, pBarDef);
                 buttonAttaque.setEnabled(false);
                 if (persoDef.vie > 0) {
                     if (i == 1) {
@@ -264,7 +264,7 @@ public class CombatActivity extends Activity {
         buttonAttSpe.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                persoAttSpe.attaqueSpeciale(persoDefSpe, textInfo);
+                persoAttSpe.attaqueSpeciale(persoDefSpe, textInfo, pBarAttSpe, pBarDefSpe);
                 if (persoAttSpe.vie > 0 && persoDefSpe.vie > 0) {
                     if (i == 1) {
                         persoAttSpe.attSpe(imageSwitcherAtt);
@@ -307,16 +307,20 @@ public class CombatActivity extends Activity {
         pBarAtt.setProgress(persoAtt.vie);
         pBarDef.setProgress(persoDef.vie);
 
-        if (persoAtt.vie <= vieMaxAtt / 2){
-            pBarAtt.setProgressTintList(ColorStateList.valueOf(Color.YELLOW));
-        }else if (persoAtt.vie <= vieMaxAtt / 4){
+        if (persoAtt.vie <= vieMaxAtt / 4){
             pBarAtt.setProgressTintList(ColorStateList.valueOf(Color.RED));
+        }else if (persoAtt.vie <= vieMaxAtt / 2){
+            pBarAtt.setProgressTintList(ColorStateList.valueOf(Color.YELLOW));
+        }else{
+            pBarAtt.setProgressTintList(ColorStateList.valueOf(Color.GREEN));
         }
 
-        if (persoDef.vie <= vieMaxDef / 2){
-            pBarDef.setProgressTintList(ColorStateList.valueOf(Color.YELLOW));
-        }else if (persoDef.vie <= vieMaxDef / 4){
+        if (persoDef.vie <= vieMaxDef / 4){
             pBarDef.setProgressTintList(ColorStateList.valueOf(Color.RED));
+        }else if (persoDef.vie <= vieMaxDef / 2){
+            pBarDef.setProgressTintList(ColorStateList.valueOf(Color.YELLOW));
+        }else{
+            pBarDef.setProgressTintList(ColorStateList.valueOf(Color.GREEN));
         }
 
 

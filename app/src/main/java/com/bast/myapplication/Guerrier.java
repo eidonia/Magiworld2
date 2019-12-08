@@ -6,6 +6,7 @@ import android.os.Looper;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.widget.ImageSwitcher;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 public class Guerrier extends Personnage{
@@ -16,16 +17,33 @@ public class Guerrier extends Personnage{
     }
 
     @Override // Coup d'épée
-    public void attaqueDeBase(Personnage defenseur, TextView textView) {
+    public void attaqueDeBase(Personnage defenseur, TextView textView, ProgressBar progressBarAtt, ProgressBar progressBarDef) {
+        int vieBase = defenseur.vie;
         defenseur.vie = defenseur.vie - degats;
+
+        ProgressBarAnim progressBarAnim = new ProgressBarAnim(progressBarDef, vieBase, defenseur.vie);
+        progressBarAnim.setDuration(1000);
+        progressBarDef.startAnimation(progressBarAnim);
+
         textView.setText("Vous attaquez " + defenseur.nomPerso + " avec votre attaque " + nomAttBase);
     }
 
     @Override //Coup de Rage
-    public void attaqueSpeciale(Personnage defenseur, TextView textView) {
+    public void attaqueSpeciale(Personnage defenseur, TextView textView, ProgressBar progressBarAtt, ProgressBar progressBarDef) {
+        int vieBaseAtt = this.vie;
+        int vieBaseDef = defenseur.vie,
         degats = 2*force;
         defenseur.vie -= degats;
         this.vie = this.vie - (force/2);
+
+        ProgressBarAnim progressBarAnimDef = new ProgressBarAnim(progressBarDef, vieBaseDef, defenseur.vie);
+        progressBarAnimDef.setDuration(1000);
+        progressBarDef.startAnimation(progressBarAnimDef);
+
+        ProgressBarAnim progressBarAnimAtt = new ProgressBarAnim(progressBarDef, vieBaseAtt, defenseur.vie);
+        progressBarAnimAtt.setDuration(1000);
+        progressBarDef.startAnimation(progressBarAnimAtt);
+
         textView.setText("Vous attaquez " + defenseur.nomPerso + " avec votre attaque " + nomAttSpe + " mais vous subissez vous aussi des dégats, votre vie est de " + vie);
     }
 
